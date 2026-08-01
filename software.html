@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusTech | Software Development Solutions</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #6d28d9;
+            --secondary: #1e293b;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --accent: #10b981;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --dark: #f8fafc;
+            --light: #0f172a;
+            --secondary: #e2e8f0;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--secondary) 100%);
+        }
+
+        .card-gradient {
+            background: linear-gradient(135deg, var(--secondary) 0%, rgba(30, 41, 59, 0.7) 100%);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #5b21b6;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            background-color: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .mobile-menu {
+            transition: all 0.3s ease;
+            transform: translateY(-100%);
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon" id="themeIcon"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar fixed w-full z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-white">NexusTech</span>
+            </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-white hover:text-purple-300 transition">Home</a>
+                <a href="#services" class="text-white hover:text-purple-300 transition">Services</a>
+                <a href="#products" class="text-white hover:text-purple-300 transition">Products</a>
+                <a href="#team" class="text-white hover:text-purple-300 transition">Team</a>
+                <a href="#contact" class="text-white hover:text-purple-300 transition">Contact</a>
+            </div>
+            <button class="md:hidden text-white" id="mobileMenuButton">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div class="mobile-menu absolute top-0 left-0 w-full bg-gray-900 shadow-lg p-4" id="mobileMenu">
+            <div class="flex justify-end mb-4">
+                <button class="text-white" id="closeMenuButton">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="text-white hover:text-purple-300 transition">Home</a>
+                <a href="#services" class="text-white hover:text-purple-300 transition">Services</a>
+                <a href="#products" class="text-white hover:text-purple-300 transition">Products</a>
+                <a href="#team" class="text-white hover:text-purple-300 transition">Team</a>
+                <a href="#contact" class="text-white hover:text-purple-300 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="gradient-bg min-h-screen flex items-center pt-20">
+        <div class="container mx-auto px-4 py-16">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animated">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6">Transform Your Digital Presence</h1>
+                    <p class="text-xl mb-8 text-gray-300">Custom software solutions tailored to your business needs. From web development to AI integration, we've got you covered.</p>
+                    <div class="flex space-x-4">
+                        <a href="#contact" class="btn-primary px-6 py-3 rounded-lg font-semibold transition">Get Started</a>
+                        <a href="#services" class="px-6 py-3 rounded-lg font-semibold border border-purple-500 text-purple-300 hover:bg-purple-900 transition">Our Services</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 animated delay-1">
+                    <img src="https://placehold.co/600x400" alt="Modern digital interface showing analytics dashboard with colorful charts and graphs" class="rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Services</h2>
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-3xl mx-auto">Comprehensive digital solutions to power your business growth</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-1">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-900 p-3 rounded-full mr-4">
+                            <i class="fas fa-code text-2xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">Custom Software Development</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">Tailored applications designed to solve your specific business challenges with scalable architecture and modern technologies.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Web Applications</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Mobile Apps</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Enterprise Solutions</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> CMS Development</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-2">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-900 p-3 rounded-full mr-4">
+                            <i class="fas fa-chart-line text-2xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">Digital Marketing</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">Boost your online presence with data-driven strategies that deliver measurable results and ROI-driven campaigns.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> SEO Optimization</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Social Media Management</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> PPC Campaigns</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Content Marketing</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-3">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-900 p-3 rounded-full mr-4">
+                            <i class="fas fa-brain text-2xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">AI & Automation</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">Leverage artificial intelligence to streamline operations, enhance decision-making, and automate repetitive tasks.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Chatbots & Virtual Assistants</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Predictive Analytics</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Process Automation</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Computer Vision</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delayCommunity-4">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-900 p-3 rounded-full mr-4">
+                            <i class="fas fa-cloud text-2xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">Cloud Solutions</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">Migrate your infrastructure to the cloud with secure, scalable, and cost-effective solutions tailored to your needs.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> AWS Integration</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Azure Services</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Cloud Security</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Migration Services</li>
+                    </ul>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-5">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-900 p-3 rounded-full mr-4">
+                            <i class="fas fa-search text-2xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">UX/UI Design</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">Beautiful, intuitive interfaces designed to enhance user engagement and drive conversions through superior experiences.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> User Research</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Wireframing</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Prototyping</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Usability Testing</li>
+                    </ul>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-3">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-900 p-3 rounded-full mr-4">
+                            <i class="fas fa-shield-alt text-2xl text-purple-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">Cybersecurity</h3>
+                    </div>
+                    <p class="text-gray-400 mb-6">Protect your digital assets with comprehensive security solutions that guard against threats and ensure compliance.</p>
+                    <ul class="space-y-2 text-gray-400">
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Vulnerability Assessment</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Penetration Testing</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Security Training</li>
+                        <li class="flex items-center"><i class="fas fa-check-circle text-purple-500 mr-2"></i> Compliance Audits</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Products</h2>
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-3xl mx-auto">Innovative solutions designed to help businesses thrive in the digital landscape</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="card-gradient rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 animated delay-1">
+                    <div class="p-0">
+                        <img src="https://placehold.co/800x450" alt="Dashboard interface showing real-time analytics with colorful metrics and performance charts" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Nexus Analytics</h3>
+                        <p class="text-gray-400 mb-4">Comprehensive business intelligence platform with real-time data visualization and predictive analytics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">AI-Powered</span>
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Customizable</span>
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Cloud-Based</span>
+                        </div>
+                        <button class="w-full bg-purple-900 hover:bg-purple-800 text-white py-2 rounded-lg transition">Learn More</button>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card-gradient rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 animated delay-2">
+                    <div class="p-0">
+                        <img src="https://placehold.co/800x450" alt="Mobile app screens showing clean interface with messaging features and user profiles" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">Connect360</h3>
+                        <p class="text-gray-400 mb-4">Omnichannel customer engagement platform with AI-powered chatbots and seamless integration.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Multichannel</span>
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Real-time</span>
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Scalable</span>
+                        </div>
+                        <button class="w-full bg-purple-900 hover:bg-purple-800 text-white py-2 rounded-lg transition">Learn More</button>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card-gradient rounded-lg overflow-hidden shadow-lg transform hover:scale-105 transition duration-300 animated delay-3">
+                    <div class="p-0">
+                        <img src="https://placehold.co/800x450" alt="E-commerce platform interface with product listings, shopping cart, and payment options" class="w-full h-48 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-semibold mb-2">ShopNex</h3>
+                        <p class="text-gray-400 mb-4">Feature-rich e-commerce platform with AI recommendations and seamless payment processing.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Mobile-Friendly</span>
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Secure Payments</span>
+                            <span class="px-3 py-1 bg-purple-900 text-purple-300 rounded-full text-xs">Inventory Management</span>
+                        </div>
+                        <button class="w-full bg-purple-900 hover:bg-purple-800 text-white py-2 rounded-lg transition">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Meet Our Team</h2>
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-3xl mx-auto">The talented professionals driving innovation and delivering exceptional results</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Team Member 1 -->
+                <div class="card-gradient p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-1">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://placehold.co/300x300" alt="Professional portrait of Sarah Johnson, a female software engineer with curly brown hair and glasses" class="w-32 h-32 rounded-full object-cover border-4 border-purple-800">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-center mb-1">Sarah Johnson</h3>
+                    <p class="text-purple-400 text-center mb-4">Chief Technology Officer</p>
+                    <p class="text-gray-400 text-center mb-4">15+ years of experience in leading software development teams and architecting scalable solutions.</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-github text-xl"></i></a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-twitter text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team Member 2 -->
+                <div class="card-gradient p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-2">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://placehold.co/300x300" alt="Professional portrait of Michael Chen, a male software developer with short black hair and friendly smile" class="w-32 h-32 rounded-full object-cover border-4 border-purple-800">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-center mb-1">Michael Chen</h3>
+                    <p class="text-purple-400 text-center mb-4">Lead Developer</p>
+                    <p class="text-gray-400 text-center mb-4">Specializes in full-stack development with expertise in JavaScript, Python, and cloud architectures.</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-github text-xl"></i></a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-twitter text-xl"></i></a>
+                    </div>
+                </div>
+
+                <!-- Team Member 3 -->
+                <div class="card-gradient p-6 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 animated delay-3">
+                    <div class="flex justify-center mb-4">
+                        <img src="https://placehold.co/300x300" alt="Professional portrait of David Rodriguez, a male UX designer with beard and stylish glasses" class="w-32 h-32 rounded-full object-cover border-4 border-purple-800">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-center mb-1">David Rodriguez</h3>
+                    <p class="text-purple-400 text-center mb-4">UX/UI Designer</p>
+                    <p class="text-gray-400 text-center mb-4">Creates intuitive and beautiful interfaces with a focus on accessibility and user-centered design.</p>
+                    <div class="flex justify-center space-x-4">
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-dribbble text-xl"></i></a>
+                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-behance text-xl"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Process Section -->
+    <section class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Our Development Process</h2>
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-3xl mx-auto">A structured approach to delivering high-quality software solutions</p>
+
+            <div class="relative">
+                <!-- Timeline -->
+                <div class="hidden lg:block absolute left-1/2 h-full w-0.5 bg-gradient-to-b from-purple-500 via-purple-400 to-purple-500 transform -translate-x-1/2"></div>
+                
+                <!-- Timeline Items -->
+                <div class="space-y-12">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col lg:flex-row items-center gap-8 animated delay-1">
+                        <div class="lg:w-1/2 lg:pr-12">
+                            <div class="bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-4">
+                                <span class="text-xl font-bold">1</span>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-center lg:text-left mb-2">Discovery & Planning</h3>
+                            <p class="text-gray-400 text-center lg:text-left">We begin with thorough requirements gathering and analysis to ensure we fully understand your business needs and technical constraints.</p>
+                        </div>
+                        <div class="lg:w-1/2 lg:pl-12 flex justify-center">
+                            <div class="bg-gray-900 p-4 rounded-lg max-w-md">
+                                <img src="https://placehold.co/400x250" alt="Team collaborating in a meeting room with whiteboards full of diagrams and sticky notes" class="rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex flex-col lg:flex-row-reverse items-center gap-8 animated delay-2">
+                        <div class="lg:w-1/2 lg:pl-12">
+                            <div class="bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-4">
+                                <span class="text-xl font-bold">2</span>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-center lg:text-left mb-2">Design & Prototyping</h3>
+                            <p class="text-gray-400 text-center lg:text-left">Our design team creates wireframes and prototypes to visualize the solution before development begins, ensuring alignment with your expectations.</p>
+                        </div>
+                        <div class="lg:w-1/2 lg:pr-12 flex justify-center">
+                            <div class="bg-gray-900 p-4 rounded-lg max-w-md">
+                                <img src="https://placehold.co/400x250" alt="Digital interface wireframes and mockups displayed on designer's screen with color palettes" class="rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex flex-col lg:flex-row items-center gap-8 animated delay-3">
+                        <div class="lg:w-1/2 lg:pr-12">
+                            <div class="bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-4">
+                                <span class="text-xl font-bold">3</span>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-center lg:text-left mb-2">Development & Testing</h3>
+                            <p class="text-gray-400 text-center lg:text-left">Using agile methodologies, we develop in sprints with continuous integration and testing to ensure quality throughout the process.</p>
+                        </div>
+                        <div class="lg:w-1/2 lg:pl-12 flex justify-center">
+                            <div class="bg-gray-900 p-4 rounded-lg max-w-md">
+                                <img src="https://placehold.co/400x250" alt="Developer working on code with multiple monitors showing IDE and test results" class="rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="flex flex-col lg:flex-row-reverse items-center gap-8 animated delay-4">
+                        <div class="lg:w-1/2 lg:pl-12">
+                            <div class="bg-purple-900 w-12 h-12 rounded-full flex items-center justify-center mx-auto lg:mx-0 mb-4">
+                                <span class="text-xl font-bold">4</span>
+                            </div>
+                            <h3 class="text-2xl font-semibold text-center lg:text-left mb-2">Deployment & Maintenance</h3>
+                            <p class="text-gray-400 text-center lg:text-left">We handle the deployment process and provide ongoing support and maintenance to ensure your solution remains secure and up-to-date.</p>
+                        </div>
+                        <div class="lg:w-1/2 lg:pr-12 flex justify-center">
+                            <div class="bg-gray-900 p-4 rounded-lg max-w-md">
+                                <img src="https://placehold.co/400x250" alt="Server racks in datacenter with network diagrams displayed on screens" class="rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">What Our Clients Say</h2>
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-3xl mx-auto">Hear from businesses that have transformed their operations with our solutions</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg animated delay-1">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/100x100" alt="Portrait of Lisa Wong, female executive with short stylish haircut" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Lisa Wong</h4>
+                            <p class="text-sm text-purple-400">CEO, Digital Horizons</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">"The custom CRM solution NexusTech developed for us has revolutionized our sales process. Their team understood our specific needs and delivered beyond expectations."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg animated delay-2">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/100x100" alt="Portrait of Robert Johnson, male executive with gray hair and professional demeanor" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Robert Johnson</h4>
+                            <p class="text-sm text-purple-400">CTO, Enterprise Solutions</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">"Their AI-powered analytics platform provided insights we didn't even know were possible. The team was responsive, knowledgeable, and truly partners in our success."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="card-gradient p-8 rounded-lg shadow-lg animated delay-3">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placehold.co/100x100" alt="Portrait of Maria Garcia, female startup founder with long dark hair and friendly smile" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Maria Garcia</h4>
+                            <p class="text-sm text-purple-400">Founder, TechStart</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-4">"As a startup, we needed a partner who could move fast while maintaining quality. NexusTech delivered a performant, scalable product that helped us secure series A funding."</p>
+                    <div class="flex text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 gradient-bg">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4">Get In Touch</h2>
+            <p class="text-xl text-center text-gray-400 mb-12 max-w-3xl mx-auto">Ready to discuss your project? Reach out and let's create something amazing together.</p>
+            
+            <div class="flex flex-col lg:flex-row gap-12">
+                <div class="lg:w-1/2 animated delay-1">
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-400 mb-1">Name</label>
+                            <input type="text" id="name" name="name" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:border-purple-500 focus:ring-purple-500 transition" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                            <input type="email" id="email" name="email" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:border-purple-500 focus:ring-purple-500 transition" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-400 mb-1">Subject</label>
+                            <select id="subject" name="subject" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:border-purple-500 focus:ring-purple-500 transition">
+                                <option value="">Select a subject</option>
+                                <option value="web">Web Development</option>
+                                <option value="mobile">Mobile App Development</option>
+                                <option value="digital">Digital Marketing</option>
+                                <option value="ai">AI & Automation</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-400 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" class="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 focus:border-purple-500 focus:ring-purple-500 transition" placeholder="Tell us about your project..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-purple-900 hover:bg-purple-800 text-white py-3 rounded-lg font-semibold transition">Send Message</button>
+                    </form>
+                </div>
+                <div class="lg:w-1/2 animated delay-2">
+                    <div class="card-gradient p-8 rounded-lg h-full">
+                        <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="bg-purple-900 p-3 rounded-full mr-4">
+                                    <i class="fas fa-map-marker-alt text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Address</h4>
+                                    <p class="text-gray-400">123 Tech Boulevard, Suite 450<br>San Francisco, CA 94107</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-900 p-3 rounded-full mr-4">
+                                    <i class="fas fa-phone-alt text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Phone</h4>
+                                    <p class="text-gray-400">+1 (415) 555-9876<br>Mon-Fri, 9am-5pm PST</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-900 p-3 rounded-full mr-4">
+                                    <i class="fas fa-envelope text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Email</h4>
+                                    <p class="text-gray-400">info@nexustech.dev<br>support@nexustech.dev</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-purple-900 p-3 rounded-full mr-4">
+                                    <i class="fas fa-globe text-purple-300"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold mb-1">Follow Us</h4>
+                                    <div class="flex space-x-4 mt-2">
+                                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-linkedin text-xl"></i></a>
+                                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-twitter text-xl"></i></a>
+                                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-facebook text-xl"></i></a>
+                                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-instagram text-xl"></i></a>
+                                        <a href="#" class="text-purple-400 hover:text-purple-300 transition"><i class="fab fa-github text-xl"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between mb-8">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4">NexusTech</h3>
+                    <p class="text-gray-400 max-w-md">Delivering innovative software solutions to transform businesses and create digital experiences that matter.</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Services</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Web Development</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Mobile Apps</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Digital Marketing</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Cloud Solutions</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Products</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Nexus Analytics</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Connect360</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">ShopNex</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">AutomatePro</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-lg font-semibold mb-4">Company</h4>
+                        <ul class="space-y-2">
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">About Us</a></li>Community
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Careers</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Blog</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-purple-300 transition">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2023 NexusTech. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-purple-300 transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-purple-300 transition">Terms of Service</a>
+                    <a href="#" class="text-gray-400 hover:text-purple-300 transition">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMenuButton = document.getElementById('closeMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu if open
+                if (mobileMenu.classList.contains('active')) {
+                    mobileMenu.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Here you would typically send the data to a server
+            // For this example, we'll just log to console and show an alert
+            console.log({name, email, subject, message});
+            
+            alert('Thank you for your message! We will get back to you soon.');
+            contactForm.reset();
+        });
+
+        // Scroll Animation
+        const animatedElements = document.querySelectorAll('.animated');
+        
+        const animateOnScroll = () => {
+            animatedElements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.style.opacity = 1;
+                }
+            });
+        };
+
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Trigger once on page load
+        window.addEventListener('load', animateOnScroll);
+        animateOnScroll();
+
+        // Automatically apply theme based on user preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+    </script>
+</body>
+</html>

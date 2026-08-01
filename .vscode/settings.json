@@ -1,10 +1,10 @@
 {
-  "emeraldwalk.runonsave": {
-    "commands": [
-      {
-        "match": "\\.java$",
-        "cmd": "D:\\Zeenat_With_Java\\auto_commit.bat"
-      }
-    ]
-  }
+    "emeraldwalk.runonsave": {
+        "commands": [
+            {
+                "match": "\\.java$",
+                "cmd": "D:\\Zeenat_With_Java\\auto_commit.bat"
+            }
+        ]
+    }
 }
