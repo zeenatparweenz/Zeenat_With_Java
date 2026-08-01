@@ -1,0 +1,10 @@
+{
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": ".*",
+        "cmd": "D:\\Zeenat_With_Java\\auto_push.bat"
+      }
+    ]
+  }
+}
