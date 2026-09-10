@@ -20,9 +20,9 @@ class A{
     {
 A a1=new A();
 A a2=new A();
-A1.fun1();
-A2.fun3();
-A1.fun2();
+a1.fun1();
+a2.fun3();
+a1.fun2();
     }
 }    
 }
