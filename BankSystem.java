@@ -22,6 +22,55 @@ boolean login(String username, String password) {
         loggedIn = true;
         return true;
     }
-    
+    return false;
 }
+void logout()
+{
+    loggedIn = false;
+    System.out.println("Logout successful.");
+}
+viod deposit(doubble amount) 
+{
+    if(!loggedIn) 
+    {
+        System.out.println("Please login first.");
+        return;
+    }
+    if (amount > 0) {
+        balance += amount;
+        System.out.println("Amount deposite sucessfully.");
+        System.out.println("Current Balance: " + balance);
+    }
+    else
+
+        {
+
+            System.out.println("Invalid amount.");
+        }
+}
+void withdraw(double amount)
+{
+    if(!loggedIn)
+    {
+        System.out.println("please login first.");
+        return;
+    }
+
+    if (amount <= 0)
+    {
+        System.out.println("Invalid amount.");
+    }
+    else if (amount > balance) {
+        System.out.println("Insufficient balance.");
+
+    }
+    else 
+    {
+        balance -= amount;
+        Sysrem.out.println("Amount withdrawn sucessfully.");
+        System.out,println("Cruent Balance: " + balance);
+    }
+}
+
+
 }
