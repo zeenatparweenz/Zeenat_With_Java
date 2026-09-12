@@ -67,10 +67,28 @@ void withdraw(double amount)
     else 
     {
         balance -= amount;
-        Sysrem.out.println("Amount withdrawn sucessfully.");
-        System.out,println("Cruent Balance: " + balance);
+        System.out.println("Amount withdrawn sucessfully.");
+        System.out.println("Cruent Balance: " + balance);
     }
 }
+void checkBalance()
+{
+    if(!loggedIn) 
+    {
+        System.out.println("Please login first.");
+        return;
+    }
+    System.out.println("Current Balance: " + balance);
+}
+void addBalance(double amount) 
+{
+    deposit(amount);
+}
+String getName() 
+{
+    return name;
+}
 
 
 }
+
