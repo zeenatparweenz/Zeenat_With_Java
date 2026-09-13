@@ -10,7 +10,7 @@ class BankAccount
 
 BankAccount(String name, String username, String password) {
     this.name = name;
-    this.username = password;
+    this.username = username;
     this.password = password;
     this.balance = 0;
     this.loggedIn = false;
@@ -29,7 +29,7 @@ void logout()
     loggedIn = false;
     System.out.println("Logout successful.");
 }
-viod deposit(doubble amount) 
+void deposit(double amount) 
 {
     if(!loggedIn) 
     {
@@ -97,7 +97,7 @@ public class BankSystem
 {
     public static void main(String[] args)
     {
-        Scanner sc = new Scanner(System.out.in);
+        Scanner sc = new Scanner(System.in);
         BankAccount account = null;
 
         while  (true )
@@ -121,7 +121,7 @@ public class BankSystem
                     case 1:
                         if(account != null)
                         {
-                            System.out.peintln("Account already registered.");
+                            System.out.println("Account already registered.");
                             break;
                         }
 
