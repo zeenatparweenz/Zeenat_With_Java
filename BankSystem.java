@@ -113,7 +113,57 @@ public class BankSystem
                 System.out.println("8. Exit");
                 System.out.println("Enter your choice: ");
 
-                int choice =
+                int choice = sc.nextInt();
+                sc.nextLine();
+
+                switch (choice)
+                {
+                    case 1:
+                        if(account != null)
+                        {
+                            System.out.peintln("Account already registered.");
+                            break;
+                        }
+
+                        System.out.print("Enter Name: ");
+                        String name = sc.nextLine();
+
+                        System.out.print("Create Username: ");
+                        String username = sc.nextLine();
+
+                        System.out.print("Create Password: ");
+                        String password = sc.nextLine();
+
+                        account = new BankAccount(name, username, password);
+
+                        System.out.println("Registration sucessful. ");
+                        break;
+
+                        case 2:
+                            if (account == null )
+                            {
+                                System.out.println("Please register first.");
+                                break;
+                            }
+
+                            System.out.print("Enter Username: ");
+                            String loginUsername = sc.nextLine();
+
+                            System.out.print("Enter Password:");
+                            String loginPassword = sc.nextLine();
+
+                            if (account.login(loginUsername, loginPassword))
+                            {
+                                System.out.println("Login sucessful.");
+                                System.out.println("Welcome " + account.getName());
+
+                            }
+                            else
+                            {
+                                System.out.println("Invalid ")
+                            }
+                }
+        
             }
         
     }
