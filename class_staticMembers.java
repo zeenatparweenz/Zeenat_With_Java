@@ -14,7 +14,6 @@ class A{
         y=45;
     }
 
-}
     class staticMembers{
     public static void main(String []args) 
     {
@@ -26,7 +25,8 @@ a2.fun3();
 
 a1.fun2();
     }
-}    
+} 
+}   
    
 
 
