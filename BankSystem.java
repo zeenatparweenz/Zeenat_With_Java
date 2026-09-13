@@ -105,7 +105,7 @@ public class BankSystem
                 System.out.println("\n======= BANK SYSTEM =======");
                 System.out.println("1. Registration");
                 System.out.println("2. Login");
-                System.out.println("2. Add Balance");
+                System.out.println("3. Add Balance");
                 System.out.println("4. Deposit");
                 System.out.println("5. Withdraw");
                 System.out.println("6. Check Balance");
