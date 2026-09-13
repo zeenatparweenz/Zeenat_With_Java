@@ -160,8 +160,74 @@ public class BankSystem
                             }
                             else
                             {
-                                System.out.println("Invalid ")
+                                System.out.println("Invalid username or password.");
                             }
+                            break;
+                            case 3:
+                                if (account == null)
+                                {
+                                    System.out.println("Please register first.");
+                                    break;
+                                }
+
+                                System.out.print("Enter amount to add: ");
+                                double addAmount = sc.nextDouble();
+
+                                account.addBalance(addAmount);
+                                break;
+
+                                case 4:
+                                    if (account == null)
+                                    {
+                                        System.out.println("Please register first.");
+                                        break;
+                                    }
+
+                                    System.out.print("Enter depost amount:");
+                                    double depositAmount = sc.nextDouble();
+
+                                    account.deposit(depositAmount);
+                                    break;
+
+                                    case 5:
+                                        if(account == null)
+                                        {
+                                            System.out.println("Please register first.");
+                                            break;
+                                        }
+
+                                        System.out.print("Enter withdrawal amount:");
+                                        double withdrawAmount = sc.nextDouble();
+
+                                        account.withdraw(withdrawAmount);
+                                        break;
+
+                                        case 6:
+                                            if(account == null)
+                                            {
+                                                System.out.println("Please register first.");
+                                                break;
+                                            }
+
+                                            account.checkBalance();
+                                            break;
+
+                                            case 7:
+                                                if (account == null) 
+                                                {
+                                                    System.out.print("Please register first.");
+                                                    break;
+                                                }
+                                                account.logout();
+                                                break;
+
+                                                case 8:
+                                                    System.out.println("Thank you for using Bank System.");
+                                                    sc.close();
+                                                    System.exit(0);
+
+                                                    default:
+                                                        System.out.println("Invalid choice.");
                 }
         
             }
